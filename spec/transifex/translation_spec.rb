@@ -15,4 +15,9 @@ describe Transifex::Translation do
     res = translation.content_hash
     expect(res).to eq({ "en" => { 'test' => { 'test' => 'data' } } })
   end
+
+  it 'raises an error if it does not recognize the type' do
+    resource.type = 'invalid'
+    expect { translation.content_hash }.to raise_error('Unrecognized content type: invalid')
+  end
 end
