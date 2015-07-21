@@ -5,7 +5,8 @@ RSpec.shared_context "shared stuff" do
     description: 'desc',
     slug: 'example',
     source_language_code: 'en') }
-  let(:project) { Transifex::Project.new(project_data, account) }
+  let(:project)  { Transifex::Project.new(project_data, account) }
+  let(:projects) { [project_data] }
 
   let(:resources) { [resource_data] }
   let(:resource_data) {
@@ -42,5 +43,17 @@ RSpec.shared_context "shared stuff" do
     expect(res.type).to eq(expected.type)
     expect(res.main_language).to eq(expected.main_language)
     expect(res.project).to eq(expected.project)
+  end
+
+  def data_to_projects(data, a)
+    data.map { |project_data| Transifex::Project.new(project_data, a) }
+  end
+
+  def compare_projects(res, expected)
+    expect(res.name).to eq(expected.name)
+    expect(res.slug).to eq(expected.slug)
+    expect(res.description).to eq(expected.description)
+    expect(res.main_language).to eq(expected.main_language)
+    expect(res.account).to eq(expected.account)
   end
 end

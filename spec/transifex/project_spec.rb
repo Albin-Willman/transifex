@@ -20,14 +20,13 @@ describe Transifex::Project do
   end
 
   it 'can retrive a resource list' do
-    allow(account).to receive(:get).and_return('Not Found')
+    allow(account).to receive(:get).and_return('BAD REQUEST')
     allow(account).to receive(:get).with('/project/example/resources/').and_return(resources)
     expected = data_to_resources(resources, project)
     res = project.resources
     expect(res.length).to eq(expected.length)
     res.each_with_index do |res_resource, i|
-      expected_resource = expected[i]
-      compare_resources(res_resource, expected_resource)
+      compare_resources(res_resource, expected[i])
     end
   end
 

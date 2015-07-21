@@ -13,7 +13,9 @@ module Transifex
     end
 
     def project(name)
-      Project.new(get("/project/#{name}/"), self)
+      data = get("/project/#{name}/")
+      return if data == 'Not Found'
+      Project.new(data, self)
     end
 
     private
