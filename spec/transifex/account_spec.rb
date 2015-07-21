@@ -43,4 +43,9 @@ describe Transifex::Account do
       expect(account.project('non-existing')).to be_nil
     end
   end
+
+  it 'calls uses the faraday connection on get' do
+    allow_any_instance_of(Faraday::Connection).to receive(:get).and_return(OpenStruct.new(body: 'body'))
+    expect(account.get('test')).to eq('body')
+  end
 end
