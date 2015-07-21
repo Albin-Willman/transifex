@@ -12,7 +12,7 @@ RSpec.shared_context "shared stuff" do
     Hashie::Mash.new(
       name: 'Example',
       categories: 'cat',
-      type: 'YML',
+      i18n_type: 'YML',
       priority: "0",
       slug: 'example',
       source_language_code: 'en'
