@@ -1,5 +1,9 @@
-require "transifex/version"
+require "transifex/config"
 
 module Transifex
-  # Your code goes here...
+
 end
+
+require 'transifex/request'
+require 'transifex/account'
+require 'transifex/project'
