@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   spec.summary       = %q{A gem to help comunicate with transifex api}
-  spec.description   = %q{A gem to help comunicate with transifex api}
+  spec.description   = %q{A gem to help retreive and verify resources on transifex.}
   spec.homepage      = "https://github.com/Albin-trialbee/transifex"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -29,11 +29,11 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'faraday', '~> 0.9.1'
   spec.add_dependency 'faraday_middleware', '~> 0.10.0'
-  spec.add_dependency 'hashie', '~> 3.4.2'
+  spec.add_dependency 'hashie', '~> 3.4'
 
   spec.add_development_dependency "bundler", "~> 1"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency 'rspec'       #, '~> 2.0'
-  spec.add_development_dependency 'guard'
-  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'rspec', '~> 0'       #, '~> 2.0'
+  spec.add_development_dependency 'guard', '~> 0'
+  spec.add_development_dependency 'guard-rspec', '~> 0'
 end
