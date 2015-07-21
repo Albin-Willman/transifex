@@ -13,13 +13,12 @@ module Transifex
     end
 
     def get(path, params = {})
-      response = connection.get(build_path(:v2, path), params)
-      response.body
+      connection.get(build_path(path), params).body
     end
 
     private
 
-    def build_path(version, path)
+    def build_path(path)
       "/api/2/#{path}"
     end
 

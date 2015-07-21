@@ -7,9 +7,5 @@ module Transifex
     VALID_OPTIONS = [:username, :password]
 
     attr_accessor *VALID_OPTIONS
-
-    def configure
-      yield self
-    end
   end
 end
