@@ -2,6 +2,12 @@
 
 This is a small gem that allows you to retrive information from a transifex account.
 
+[![Build Status](https://travis-ci.org/Albin-trialbee/transifex.png?branch=master)](https://travis-ci.org/Albin-trialbee/transifex)
+
+[![Code Climate](https://codeclimate.com/github/Albin-trialbee/transifex/badges/gpa.svg)](https://codeclimate.com/github/Albin-trialbee/transifex)
+
+[![Test Coverage](https://codeclimate.com/github/Albin-trialbee/transifex/badges/coverage.svg)](https://codeclimate.com/github/Albin-trialbee/transifex)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -40,7 +46,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/transifex/fork )
+1. Fork it ( https://github.com/albin-trialbee/transifex/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

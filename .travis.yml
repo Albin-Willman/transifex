@@ -1,3 +1,12 @@
 language: ruby
 rvm:
   - 2.2.0
+  - 2.1.2
+  - 2.0.0
+  - 1.9.3
+script: bundle exec rspec --tag ~no_travis spec
+bundler_args: --without production
+cache: bundler
+addons:
+  code_climate:
+    repo_token: f0f77a48e7d3ac45f5d36dcf0f6c1628ebde0ba75acb211dce76b7b36e943d59
