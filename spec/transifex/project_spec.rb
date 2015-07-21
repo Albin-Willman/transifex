@@ -32,6 +32,18 @@ describe Transifex::Project do
       test:
         test: "data"')
   }
+
+  def data_to_resources(data, p)
+    data.map { |resource_data| Transifex::Resource.new(resource_data, p) }
+  end
+
+  def compare_resources(res, expected)
+    expect(res.name).to eq(expected.name)
+    expect(res.slug).to eq(expected.slug)
+    expect(res.type).to eq(expected.type)
+    expect(res.main_language).to eq(expected.main_language)
+    expect(res.project).to eq(expected.project)
+  end
   
   it 'has a name' do
     expect(project.name).to eq('Example')
@@ -52,7 +64,13 @@ describe Transifex::Project do
   it 'can retrive a resource list' do
     allow(account).to receive(:get).and_return('Not Found')
     allow(account).to receive(:get).with('/project/example/resources/').and_return(resources)
-    expect(project.resources).to eq(resources)
+    expected = data_to_resources(resources, project)
+    res = project.resources
+    expect(res.length).to eq(expected.length)
+    res.each_with_index do |res_resource, i|
+      expected_resource = expected[i]
+      compare_resources(res_resource, expected_resource)
+    end
   end
 
   it 'can retrive languages' do
@@ -63,12 +81,14 @@ describe Transifex::Project do
   context 'resource' do
     it 'can retrive a specific resource' do
       allow(account).to receive(:get).with('/project/example/resource/example/').and_return(resource)
-      expect(project.resource('example')).to eq(resource)
+      res = project.resource('example')
+      expected = Transifex::Resource.new(resource, project)
+      compare_resources(res, expected)
     end
 
     it 'returns not found if no record is found' do
       allow(account).to receive(:get).with('/project/example/resource/non-existing/').and_return('Not Found')
-      expect(project.resource('non-existing')).to eq('Not Found')
+      expect(project.resource('non-existing')).to be_nil
     end
   end
 
@@ -77,7 +97,7 @@ describe Transifex::Project do
       allow(account).to receive(:get).with('/project/example/resource/example/translation/en/').and_return(translation_data)
       expected = Transifex::Translation.new(translation_data, resource)
       res      = project.translation(resource, 'en')
-      expect(expected.content).to eq(res.content)
+      expect(expected.content).to  eq(res.content)
       expect(expected.resource).to eq(res.resource)
     end
   end
