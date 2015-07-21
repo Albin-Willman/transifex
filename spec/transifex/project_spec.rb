@@ -2,18 +2,6 @@ require 'spec_helper'
 
 describe Transifex::Project do
   include_context "shared stuff"
-
-  def data_to_resources(data, p)
-    data.map { |resource_data| Transifex::Resource.new(resource_data, p) }
-  end
-
-  def compare_resources(res, expected)
-    expect(res.name).to eq(expected.name)
-    expect(res.slug).to eq(expected.slug)
-    expect(res.type).to eq(expected.type)
-    expect(res.main_language).to eq(expected.main_language)
-    expect(res.project).to eq(expected.project)
-  end
   
   it 'has a name' do
     expect(project.name).to eq('Example')

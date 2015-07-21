@@ -11,5 +11,8 @@ describe Transifex::Translation do
     expect(translation.resource).to eq(resource)
   end
 
-  
+  it 'can convert the content to a hash' do
+    res = translation.content_hash
+    expect(res).to eq({ "en" => { 'test' => { 'test' => 'data' } } })
+  end
 end
