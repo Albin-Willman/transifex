@@ -1,19 +1,5 @@
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'transifex'
-
-
-require 'simplecov'
-require 'coveralls'
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-SimpleCov.start do
-  add_group 'lib',        '/lib'
-end
 
 require 'hashie'
 require 'transifex'
