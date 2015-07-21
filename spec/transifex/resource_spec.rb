@@ -1,25 +1,7 @@
 require 'spec_helper'
 
 describe Transifex::Resource do
-  let(:account) { Transifex::Account.new('user', 'pwd') }
-  let(:project_data) { Hashie::Mash.new(
-    name: 'Example',
-    description: 'desc',
-    slug: 'example',
-    source_language_code: 'en') }
-  let(:project) { Transifex::Project.new(project_data, account) }
-
-  let(:resource_data) {
-    Hashie::Mash.new(
-      name: 'Example',
-      categories: 'cat',
-      type: 'YML',
-      priority: "0",
-      slug: 'example',
-      source_language_code: 'en'
-      )
-  }
-  let(:resource) { described_class.new(resource_data, project) }
+  include_context "shared stuff"
 
   it 'has a name' do
     expect(resource.name).to eq('Example')

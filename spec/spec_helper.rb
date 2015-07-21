@@ -15,6 +15,7 @@ end
 
 require 'hashie'
 require 'transifex'
+require 'shared_spec_setup'
 
 RSpec.configure do |config|
   config.order = 'random'

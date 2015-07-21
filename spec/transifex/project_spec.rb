@@ -1,37 +1,7 @@
 require 'spec_helper'
 
 describe Transifex::Project do
-  let(:account) { Transifex::Account.new('user', 'pwd') }
-  let(:project_data) { Hashie::Mash.new(
-    name: 'Example',
-    description: 'desc',
-    slug: 'example',
-    source_language_code: 'en') }
-  let(:project) { described_class.new(project_data, account) }
-
-  let(:resources) { [resource] }
-  let(:resource) {
-    Hashie::Mash.new(
-      name: 'Example',
-      categories: 'cat',
-      type: 'YML',
-      priority: "0",
-      slug: 'example',
-      source_language_code: 'en'
-      )
-  }
-
-  let(:language_data) {
-    [
-      Hashie::Mash.new(language_code: 'en'),
-      Hashie::Mash.new(language_code: 'se')
-    ]
-  }
-  let(:translation_data) {
-    Hashie::Mash.new(content: 'en:
-      test:
-        test: "data"')
-  }
+  include_context "shared stuff"
 
   def data_to_resources(data, p)
     data.map { |resource_data| Transifex::Resource.new(resource_data, p) }
@@ -80,9 +50,9 @@ describe Transifex::Project do
 
   context 'resource' do
     it 'can retrive a specific resource' do
-      allow(account).to receive(:get).with('/project/example/resource/example/').and_return(resource)
+      allow(account).to receive(:get).with('/project/example/resource/example/').and_return(resource_data)
       res = project.resource('example')
-      expected = Transifex::Resource.new(resource, project)
+      expected = Transifex::Resource.new(resource_data, project)
       compare_resources(res, expected)
     end
 
