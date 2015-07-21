@@ -24,7 +24,9 @@ module Transifex
     end
 
     def translation(resource, language_code)
-      Translation.new(account.get("#{resource_path(resource.slug)}translation/#{language_code}/"), resource)
+      translation_data = account.get("#{resource_path(resource.slug)}translation/#{language_code}/")
+      return if translation_data == 'Not Found'
+      Translation.new(translation_data, resource)
     end
 
     private

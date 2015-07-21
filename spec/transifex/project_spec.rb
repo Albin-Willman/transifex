@@ -43,7 +43,7 @@ describe Transifex::Project do
       compare_resources(res, expected)
     end
 
-    it 'returns not found if no record is found' do
+    it 'returns nil if no record is found' do
       allow(account).to receive(:get).with('/project/example/resource/non-existing/').and_return('Not Found')
       expect(project.resource('non-existing')).to be_nil
     end
@@ -56,6 +56,11 @@ describe Transifex::Project do
       res      = project.translation(resource, 'en')
       expect(expected.content).to  eq(res.content)
       expect(expected.resource).to eq(res.resource)
+    end
+
+    it 'returns nil if no record is found' do
+      allow(account).to receive(:get).with('/project/example/resource/example/translation/non-existing/').and_return('Not Found')
+      expect(project.translation(resource, 'non-existing')).to be_nil
     end
   end
 end
