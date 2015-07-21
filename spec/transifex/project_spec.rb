@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Transifex::Project do
-
-  let(:input_data) { Hashie::Mash.new(
+  let(:account) { Transifex::Account.new('user', 'pwd') }
+  let(:project_data) { Hashie::Mash.new(
     name: 'Example',
     description: 'desc',
     slug: 'example',
     source_language_code: 'en') }
-  let(:res) { described_class.new(input_data, account) }
+  let(:project) { described_class.new(project_data, account) }
 
   let(:resources) { [resource] }
   let(:resource) {
@@ -20,41 +20,65 @@ describe Transifex::Project do
       source_language_code: 'en'
       )
   }
-  let(:account) { Transifex::Account.new('user', 'pwd') }
 
-
-
+  let(:language_data) {
+    [
+      Hashie::Mash.new(language_code: 'en'),
+      Hashie::Mash.new(language_code: 'se')
+    ]
+  }
+  let(:translation_data) {
+    Hashie::Mash.new(content: 'en:
+      test:
+        test: "data"')
+  }
+  
   it 'has a name' do
-    expect(res.name).to eq('Example')
+    expect(project.name).to eq('Example')
   end
 
   it 'has a description' do
-    expect(res.description).to eq('desc')
+    expect(project.description).to eq('desc')
   end
 
   it 'has a slug' do
-    expect(res.slug).to eq('example')
+    expect(project.slug).to eq('example')
   end
 
   it 'has a main_language' do
-    expect(res.main_language).to eq('en')
+    expect(project.main_language).to eq('en')
   end
 
   it 'can retrive a resource list' do
-    allow(account).to receive(:get).and_return(:test)
+    allow(account).to receive(:get).and_return('Not Found')
     allow(account).to receive(:get).with('/project/example/resources/').and_return(resources)
-    expect(res.resources).to eq(resources)
+    expect(project.resources).to eq(resources)
+  end
+
+  it 'can retrive languages' do
+    allow(account).to receive(:get).with('/project/example/languages/').and_return(language_data)
+    expect(project.languages).to eq(['en', 'se'])
   end
 
   context 'resource' do
     it 'can retrive a specific resource' do
       allow(account).to receive(:get).with('/project/example/resource/example/').and_return(resource)
-      expect(res.resource('example')).to eq(resource)
+      expect(project.resource('example')).to eq(resource)
     end
 
     it 'returns not found if no record is found' do
       allow(account).to receive(:get).with('/project/example/resource/non-existing/').and_return('Not Found')
-      expect(res.resource('non-existing')).to eq('Not Found')
+      expect(project.resource('non-existing')).to eq('Not Found')
     end
-  end    
+  end
+
+  context 'translation' do
+    it 'can retrive a translation' do
+      allow(account).to receive(:get).with('/project/example/resource/example/translation/en/').and_return(translation_data)
+      expected = Transifex::Translation.new(translation_data, resource)
+      res      = project.translation(resource, 'en')
+      expect(expected.content).to eq(res.content)
+      expect(expected.resource).to eq(res.resource)
+    end
+  end
 end
