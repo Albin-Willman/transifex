@@ -1,8 +1,6 @@
 # Transifex
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/transifex`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a small gem that allows you to retrive information from a transifex account.
 
 ## Installation
 
@@ -22,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The base of everything is the account class which can be used to retrieve projects as shown below.
+
+```ruby
+account  = Transifex::Account.new('email', 'pwd')
+projects = account.projects
+project  = account.project('project_name')
+```
+
+Projects can the be used to find out what languages it is translated to, what resources are avaliable and retrieve those resources.
+
+With a resource you can then retreive the translations for a given language.
 
 ## Development
 
