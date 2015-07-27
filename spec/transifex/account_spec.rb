@@ -11,7 +11,7 @@ describe Transifex::Account do
     it 'has a correct header' do
       res = account.connection.headers
       expect(res['Accept']).to eq('application/json')
-      expect(res['User-Agent']).to eq('transifex 0.1.0')
+      expect(res['User-Agent']).to eq("transifex #{Transifex::VERSION}")
       expect(res['Authorization']).to include('Basic')
     end
 
