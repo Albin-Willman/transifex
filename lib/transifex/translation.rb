@@ -1,5 +1,6 @@
 require 'yaml'
 module Transifex
+  # Holds Transifex translations data in a hash
   class Translation
     attr_accessor :resource, :content
 

@@ -1,6 +1,7 @@
 require 'transifex/request'
 
 module Transifex
+  # Holds Transifex account credentials and projects
   class Account
     include Transifex::Request
 

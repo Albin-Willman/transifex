@@ -1,7 +1,7 @@
-require "transifex/config"
+require 'transifex/config'
 
+# Transifex gem
 module Transifex
-
 end
 
 require 'transifex/request'

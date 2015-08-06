@@ -2,6 +2,7 @@ require 'faraday'
 require 'faraday_middleware'
 
 module Transifex
+  # Performs requests to Transifex
   module Request
     def set_credentials(username, password)
       @username = username
