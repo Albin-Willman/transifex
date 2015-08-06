@@ -1,4 +1,5 @@
 require 'transifex/request'
+require 'transifex/paths'
 
 module Transifex
   # Holds Transifex account credentials and projects
@@ -10,20 +11,16 @@ module Transifex
     end
 
     def projects
-      initialize_projects(get('/projects/'))
+      initialize_projects(get(Paths.projects))
     end
 
     def project(name)
-      data = get("/project/#{name}/")
+      data = get(Paths.project(name))
       return if data == 'Not Found'
       Project.new(data, self)
     end
 
     private
-
-    def resource_path(resource_slug)
-      "#{base_path}/resource/#{resource_slug}/"
-    end
 
     def initialize_projects(project_data_array)
       project_data_array.map do |project_data|

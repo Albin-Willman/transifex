@@ -3,6 +3,14 @@ module Transifex
   class Paths
     attr_reader :project_slug
 
+    def self.projects
+      '/projects/'
+    end
+
+    def self.project(name)
+      "/project/#{name}/"
+    end
+
     def initialize(project_slug)
       @project_slug = project_slug
     end
@@ -12,11 +20,11 @@ module Transifex
     end
 
     def resource(resource_slug)
-      "/project/#{project_slug}/resource/#{resource_slug}"
+      "/project/#{project_slug}/resource/#{resource_slug}/"
     end
 
     def languages
-      "/project/#{project_slug}/languages"
+      "/project/#{project_slug}/languages/"
     end
 
     def translations(resource_slug, language_code)

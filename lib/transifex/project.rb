@@ -1,3 +1,5 @@
+require 'transifex/paths'
+
 module Transifex
   # Holds data for a Transifex project
   class Project

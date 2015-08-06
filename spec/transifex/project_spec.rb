@@ -11,10 +11,6 @@ describe Transifex::Project do
     expect(project.description).to eq('desc')
   end
 
-  it 'has a slug' do
-    expect(project.slug).to eq('example')
-  end
-
   it 'has a main_language' do
     expect(project.main_language).to eq('en')
   end
