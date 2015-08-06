@@ -21,6 +21,10 @@ module Transifex
 
     private
 
+    def resource_path(resource_slug)
+      "#{base_path}/resource/#{resource_slug}/"
+    end
+
     def initialize_projects(project_data_array)
       project_data_array.map do |project_data|
         Project.new(project_data, self)
