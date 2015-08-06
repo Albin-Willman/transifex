@@ -2,7 +2,7 @@ require 'transifex/request'
 
 module Transifex
   # Holds Transifex account credentials and projects
-  class Account
+  class Client
     include Transifex::Request
 
     def initialize(username, password)

@@ -29,9 +29,9 @@ Or install it yourself as:
 The base of everything is the account class which can be used to retrieve projects as shown below.
 
 ```ruby
-account  = Transifex::Account.new('email', 'pwd')
-projects = account.projects
-project  = account.project('project_name')
+client   = Transifex::Client.new('email', 'pwd')
+projects = client.projects
+project  = client.project('project_name')
 ```
 
 Projects can the be used to find out what languages it is translated to, what resources are avaliable and retrieve those resources.
