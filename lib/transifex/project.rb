@@ -12,7 +12,7 @@ module Transifex
     end
 
     def resources
-       @resources ||= initializ_resources(account.get("#{base_path}/resources/"))
+       @resources ||= initialize_resources(account.get("#{base_path}/resources/"))
     end
 
     def resource(resource_slug)
@@ -41,7 +41,7 @@ module Transifex
       "/project/#{slug}"
     end
 
-    def initializ_resources(resource_data_array)
+    def initialize_resources(resource_data_array)
       resource_data_array.map do |resource_data|
         Resource.new(resource_data, self)
       end

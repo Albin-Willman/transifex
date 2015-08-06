@@ -10,7 +10,7 @@ module Transifex
     end
 
     def projects
-      initializ_projects(get('/projects/'))
+      initialize_projects(get('/projects/'))
     end
 
     def project(name)
@@ -21,7 +21,7 @@ module Transifex
 
     private
 
-    def initializ_projects(project_data_array)
+    def initialize_projects(project_data_array)
       project_data_array.map do |project_data|
         Project.new(project_data, self)
       end
