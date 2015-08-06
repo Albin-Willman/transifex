@@ -11,7 +11,7 @@ module Transifex
     end
 
     def projects
-      initialize_projects(get(Paths.projects))
+      @projects ||= initialize_projects(get(Paths.projects))
     end
 
     def project(name)
