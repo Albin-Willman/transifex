@@ -8,6 +8,7 @@ module Transifex
 
     def initialize(username, password)
       set_credentials(username, password)
+      @fetched_projects = {}
     end
 
     def projects
@@ -15,9 +16,11 @@ module Transifex
     end
 
     def project(name)
+      return @fetched_projects[name] if @fetched_projects[name]
+
       data = get(Paths.project(name))
       return if data == 'Not Found'
-      Project.new(data, self)
+      @fetched_projects[name] = Project.new(data, self)
     end
 
     private
