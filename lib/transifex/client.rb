@@ -12,7 +12,11 @@ module Transifex
     end
 
     def projects
-      @projects ||= initialize_projects(get(Paths.projects))
+      @projects ||= begin
+        get(Paths.projects).map do |project_data|
+          Project.new(project_data, self)
+        end
+      end
     end
 
     def project(name)
@@ -33,14 +37,6 @@ module Transifex
 
     def purge_project_cache
       @fetched_projects = {}
-    end
-
-    private
-
-    def initialize_projects(project_data_array)
-      project_data_array.map do |project_data|
-        Project.new(project_data, self)
-      end
     end
   end
 end
