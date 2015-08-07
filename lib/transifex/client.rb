@@ -4,10 +4,10 @@ require 'transifex/paths'
 module Transifex
   # Holds Transifex account credentials and projects
   class Client
-    include Transifex::Request
+    attr_reader :request
 
     def initialize(username, password)
-      set_credentials(username, password)
+      @request = Request.new(username, password)
       @fetched_projects = {}
     end
 
@@ -21,6 +21,14 @@ module Transifex
       data = get(Paths.project(name))
       return if data == 'Not Found'
       @fetched_projects[name] = Project.new(data, self)
+    end
+
+    def get(*args)
+      request.get(*args)
+    end
+
+    def connection
+      request.connection
     end
 
     private

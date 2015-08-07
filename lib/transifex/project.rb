@@ -14,7 +14,11 @@ module Transifex
     end
 
     def resources
-       @resources ||= initialize_resources(client.get(@paths.resources))
+       @resources ||= begin
+         client.get(@paths.resources).map do |resource_data|
+           Resource.new(resource_data, self)
+         end
+       end
     end
 
     def resource(resource_slug)
@@ -31,22 +35,6 @@ module Transifex
       translation_data = client.get(@paths.translations(resource.slug, language_code))
       return if translation_data == 'Not Found'
       Translation.new(translation_data, resource)
-    end
-
-    private
-
-    def resource_path(resource_slug)
-      "#{base_path}/resource/#{resource_slug}/"
-    end
-
-    def base_path
-      "/project/#{slug}"
-    end
-
-    def initialize_resources(resource_data_array)
-      resource_data_array.map do |resource_data|
-        Resource.new(resource_data, self)
-      end
     end
   end
 end
