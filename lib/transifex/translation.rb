@@ -4,8 +4,8 @@ module Transifex
   class Translation
     attr_accessor :resource, :content
 
-    def initialize(data, resource)
-      @content  = data.content
+    def initialize(content, resource)
+      @content  = content
       @resource = resource
     end
 
