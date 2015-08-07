@@ -9,7 +9,7 @@ module Transifex
       @resource = resource
     end
 
-    def content_hash
+    def content
       case resource.type.downcase
       when 'yml' then return convert_from_yml
       else
