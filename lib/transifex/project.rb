@@ -34,8 +34,7 @@ module Transifex
     def translation(resource, language_code)
       translation_data = client.get(@paths.translations(resource.slug, language_code))
       return if translation_data == 'Not Found'
-
-      Translation.new(translation_data.content, resource)
+      Translation.new(translation_data, resource)
     end
   end
 end
