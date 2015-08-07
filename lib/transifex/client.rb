@@ -31,6 +31,10 @@ module Transifex
       request.connection
     end
 
+    def purge_project_cache
+      @fetched_projects = {}
+    end
+
     private
 
     def initialize_projects(project_data_array)
