@@ -1,7 +1,10 @@
 require 'yaml'
 module Transifex
+  class UnkownContentTypeError < StandardError;end
+
   # Holds Transifex translations data in a hash
   class Translation
+
     attr_reader :resource
 
     def initialize(data, resource)
@@ -13,7 +16,7 @@ module Transifex
       case resource.type.downcase
       when 'yml' then return convert_from_yml
       else
-        raise "Unrecognized content type: #{resource.type}"
+        fail UnkownContentTypeError, "Unrecognized content type: #{resource.type}"
       end
     end
 
