@@ -1,7 +1,7 @@
 module Transifex
   # Holds Transifex resource data
   class Resource
-    attr_accessor :name, :type, :slug, :main_language, :project
+    attr_reader :name, :type, :slug, :main_language, :project
 
     def initialize(data, project)
       @name          = data.name

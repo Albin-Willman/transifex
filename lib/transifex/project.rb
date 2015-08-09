@@ -3,12 +3,13 @@ require 'transifex/paths'
 module Transifex
   # Holds data for a Transifex project
   class Project
-    attr_accessor :name, :description, :slug, :main_language, :client
+    attr_reader :name, :description, :slug, :main_language, :client
 
     def initialize(project_data, client)
       @name          = project_data.name
       @description   = project_data.description
-      @paths         = Paths.new(project_data.slug)
+      @slug          = project_data.slug
+      @paths         = Paths.new(@slug)
       @main_language = project_data.source_language_code
       @client        = client
     end
