@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'transifex/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "transifex"
+  spec.name          = "transifex-rb"
   spec.version       = Transifex::VERSION
   spec.authors       = ["Albin Willman"]
   spec.email         = ["j.albin.willman@gmail.com"]
@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A gem to help comunicate with transifex api}
   spec.description   = %q{A gem to help retreive and verify resources on transifex.}
-  spec.homepage      = "https://github.com/Albin-trialbee/transifex"
+  spec.homepage      = "https://github.com/Albin-willman/transifex"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
