@@ -1,11 +1,11 @@
 RSpec.shared_context "shared stuff" do
-  let(:account) { Transifex::Account.new('user', 'pwd') }
+  let(:client) { Transifex::Client.new('user', 'pwd') }
   let(:project_data) { Hashie::Mash.new(
     name: 'Example',
     description: 'desc',
     slug: 'example',
     source_language_code: 'en') }
-  let(:project)  { Transifex::Project.new(project_data, account) }
+  let(:project)  { Transifex::Project.new(project_data, client) }
   let(:projects) { [project_data] }
 
   let(:resources) { [resource_data] }
@@ -54,6 +54,6 @@ RSpec.shared_context "shared stuff" do
     expect(res.slug).to eq(expected.slug)
     expect(res.description).to eq(expected.description)
     expect(res.main_language).to eq(expected.main_language)
-    expect(res.account).to eq(expected.account)
+    expect(res.client).to eq(expected.client)
   end
 end
