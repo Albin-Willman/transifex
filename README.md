@@ -4,9 +4,9 @@ This is a small gem that allows you to retrive information from a transifex acco
 
 [![Build Status](https://travis-ci.org/Albin-willman/transifex.png?branch=master)](https://travis-ci.org/Albin-willman/transifex)
 
-[![Code Climate](https://codeclimate.com/github/Albin-willman/transifex/badges/gpa.svg)](https://codeclimate.com/github/Albin-willman/transifex)
+[![Code Climate](https://codeclimate.com/github/Albin-trialbee/transifex/badges/gpa.svg)](https://codeclimate.com/github/Albin-trialbee/transifex)
 
-[![Test Coverage](https://codeclimate.com/github/Albin-willman/transifex/badges/coverage.svg)](https://codeclimate.com/github/Albin-willman/transifex)
+[![Test Coverage](https://codeclimate.com/github/Albin-trialbee/transifex/badges/coverage.svg)](https://codeclimate.com/github/Albin-trialbee/transifex)
 
 ## Installation
 
