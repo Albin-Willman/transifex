@@ -23,7 +23,8 @@ module Transifex
     end
 
     def put(path, file_path)
-      connection.put(path, file_path)
+      payload = { content: Faraday::UploadIO.new(file_path, 'text/yaml') }
+      connection.put(build_path(path), payload)
     end
 
     def connection
@@ -45,8 +46,9 @@ module Transifex
         builder.basic_auth(@username, @password)
 
         # Request Middleware
-        builder.use Faraday::Request::Multipart
-        builder.use Faraday::Request::UrlEncoded
+        # builder.use Faraday::Request::Multipart
+        builder.request :multipart
+        builder.request :url_encoded
 
         builder.adapter :net_http
       end

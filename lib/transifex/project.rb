@@ -38,8 +38,8 @@ module Transifex
       Translation.new(translation_data, resource)
     end
 
-    def update_resource(resource, file)
-      client.put(paths.update_resource(resource.slug), file)
+    def update_resource(resource, file_path)
+      client.put(paths.update_resource(resource.slug), file_path)
     end
   end
 end
