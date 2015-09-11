@@ -23,6 +23,10 @@ module Transifex
       "/project/#{project_slug}/resource/#{resource_slug}/"
     end
 
+    def update_resource(resource_slug)
+      "/project/#{project_slug}/resource/#{resource_slug}/content/"
+    end
+
     def languages
       "/project/#{project_slug}/languages/"
     end
