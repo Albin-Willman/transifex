@@ -2,7 +2,7 @@
 
 This is a small gem that allows you to retrive information from a transifex account.
 
-[![Build Status](https://travis-ci.org/Albin-willman/transifex.png?branch=master)](https://travis-ci.org/Albin-willman/transifex)
+[![Build Status](https://travis-ci.org/Albin-Willman/transifex.png?branch=master)](https://travis-ci.org/Albin-willman/transifex)
 
 [![Code Climate](https://codeclimate.com/github/Albin-trialbee/transifex/badges/gpa.svg)](https://codeclimate.com/github/Albin-trialbee/transifex)
 
