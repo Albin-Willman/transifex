@@ -31,6 +31,10 @@ module Transifex
       request.get(*args)
     end
 
+    def put(*args)
+      request.put(*args)
+    end
+
     def connection
       request.connection
     end

@@ -22,6 +22,10 @@ module Transifex
       connection.get(build_path(path), params).body
     end
 
+    def put(path, file_path)
+      connection.put(path, file_path)
+    end
+
     def connection
       @connection ||= make_connection
     end
